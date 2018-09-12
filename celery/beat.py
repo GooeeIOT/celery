@@ -265,6 +265,8 @@ class Scheduler(object):
         self._heap = []
         for entry in values(self.schedule):
             is_due, next_call_delay = entry.is_due()
+            if self._heap is None:
+                self._heap = []
             self._heap.append(event_t(
                 self._when(
                     entry,
